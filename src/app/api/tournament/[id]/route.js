@@ -3,13 +3,13 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params }) {
   try {
-    console.log('params.id')
+    console.log('geto')
     console.log(params.id)
-    const user = await prisma.user.findFirst({
-      where: { clerk: params.id },
+    const tournament = await prisma.tournament.findFirst({
+      where: { id: params.id },
       include: { players: true },
     });
-    return NextResponse.json(user);
+    return NextResponse.json(tournament);
   } catch (error) {
     return NextResponse.json("No fue posible" + error.message);
   }
@@ -17,19 +17,15 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const data = await request.json();
-    const userUpdate = await prisma.user.update({
-      where: { idClerk: params.id },
+    const tournamentUpdate = await prisma.tournament.update({
+      where: { id: Number(params.id) },
       data: {
-        firstName: data.firstName,
-        lastName: data.lastName,
+        name: data.name,
+        description: data.description,
         image: data.image,
-        email: data.email,
-        phone: data.phone,
-        gender: data.gender,
-        admin: data.admin,
       },
     });
-    return NextResponse.json(userUpdate);
+    return NextResponse.json(tournamentUpdate);
   } catch (error) {
     return NextResponse.json("No fue posible" + error.message);
   }
@@ -37,8 +33,8 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const userDelete = await prisma.user.delete({
-      where: { idClerk: params.id },
+    const tournamentDelete = await prisma.tournament.delete({
+      where: { id: Number(params.id) },
     });
     return NextResponse.json("eliminando Usuario" + params.id);
   } catch (error) {

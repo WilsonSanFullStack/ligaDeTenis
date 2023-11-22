@@ -6,24 +6,31 @@ import { useRouter } from 'next/navigation'
 export default function Login({ data }) {
   const { isSignedIn } = useUser();
   const router = useRouter();
-
+// console.log('1data')
+// console.log(data)
   useEffect(() => {
     const checkLogin = async () => {
-      if (isSignedIn) {
+      if (data) {
         // El usuario está autenticado, puedes redirigirlo a la página deseada
-        if (data?.idClerk) {
+        // console.log('0')
+        if (data?.clerk) {
+          // console.log('1')
           if (data.admin) {
-            router.replace("/dashboard");
+            router.replace("/pages/dashboard");
+            // console.log('2')
           } else {
-            router.replace("/home");
+            router.replace("/pages");
+            // console.log('3')
           }
         } else {
           // Si el usuario no se encuentra en la base de datos, podrías redirigirlo a la página de registro.
+          // console.log('4')
           router.replace("/registeruser");
         }
       } else {
         // El usuario no está autenticado, podrías redirigirlo a la página de inicio de sesión.
-        console.log('first')
+        // console.log('5')
+        router.replace("/registeruser");
       }
     };
 

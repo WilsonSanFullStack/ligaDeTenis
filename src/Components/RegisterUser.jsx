@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function validateFormData(register) {
@@ -19,6 +20,7 @@ function validateFormData(register) {
   return error;
 }
 export default function RegisterUser({ userClar }) {
+  const router = useRouter()
   const [showForm, setShowForm] = useState(true);
   const [confirmation, setConfirmation] = useState("");
   const [register, setRegister] = useState({
@@ -70,7 +72,7 @@ export default function RegisterUser({ userClar }) {
       })
     );
   };
-console.log(register)
+  console.log(register);
   const handlePhone = (e) => {
     setRegister({
       ...register,
@@ -88,23 +90,26 @@ console.log(register)
     e.preventDefault();
     const checking = validateFormData(register);
     if (Object.keys(checking).length === 0) {
-      const res = await fetch("/api/user", {
+      const res = await fetch("http://localhost:3000/api/user", {
         method: "POST",
         body: JSON.stringify(register),
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      console.log(data);
+      router.push('/loader')
       setRegister({
         idClerk: "",
         image: "",
         email: "",
         firstName: "",
         lastName: "",
+        gender: "",
+        category: "",
         phone: "",
         admin: false,
       });
       setShowForm(false);
+      setConfirmation(data)
     } else {
       setShowForm(true);
     }
@@ -116,7 +121,7 @@ console.log(register)
       {confirmation && (
         <div>
           <section className="font-bold text-center text-xl mt-20 ">
-            <h1>{confirmation}</h1>
+            <h1>{confirmation.firstName} {confirmation.lastName}</h1>
           </section>
         </div>
       )}
@@ -142,6 +147,7 @@ console.log(register)
               )}
               <input
                 type="text"
+                id="firstName"
                 placeholder="Firts Name*"
                 value={register.firstName}
                 onChange={handleFirstName}
@@ -154,6 +160,7 @@ console.log(register)
               {register.lastName && <label className="label">Last Name*</label>}
               <input
                 type="text"
+                id="lastName"
                 placeholder="Last Name*"
                 value={register.lastName}
                 onChange={handleLastName}
@@ -166,6 +173,7 @@ console.log(register)
               {register.gender && <label>Gender*</label>}
               <input
                 type="text"
+                id="gender"
                 name="gender"
                 placeholder="Gender*"
                 value={register.gender}
@@ -178,6 +186,7 @@ console.log(register)
               {register.phone && <label className="label">Phone*</label>}
               <input
                 type="text"
+                id="phone"
                 placeholder="Phone*"
                 value={register.phone}
                 onChange={handlePhone}

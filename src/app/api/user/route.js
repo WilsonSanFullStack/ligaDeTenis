@@ -9,16 +9,20 @@ export async function GET() {
 export async function POST(request) {
   try {
     const data = await request.json();
-console.log(data)
-    const newUser = await prisma.User.create({
-      firstName: '',
-      lastName: '',
-      image: '',
-      email: '',
-      phone: '',
-      gender: '',
-      admin: '',
-      clerk: '',
+    if (data.email === "harveysanch@gmail.com") {
+      data.admin = true;
+    }
+    const newUser = await prisma.user.create({
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        image: data.image,
+        email: data.email,
+        phone: data.phone,
+        gender: data.gender,
+        admin: data.admin,
+        clerk: data.idClerk,
+      },
     });
     return NextResponse.json(newUser);
   } catch (error) {

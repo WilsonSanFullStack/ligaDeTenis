@@ -11,13 +11,30 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  clerk String
+  id        String  @id @default(cuid())
+  clerk     String
   firstName String
-  lastName String
-  gender String
-  phone String
-  email String
-  image String
-  admin String
+  lastName  String
+  gender    String
+  phone     String
+  email     String
+  image     String
+  admin     Boolean
+  players   Player[]   // Relación inversa con el modelo Player
+}
+
+model Tournament {
+ id        String  @id @default(cuid())
+  name        String
+  description String
+  image       String?
+  players     Player[]  // Relación inversa con el modelo Player
+}
+
+model Player {
+  id        String  @id @default(cuid())
+  user         User    @relation(fields: [userId], references: [id])
+  userId       String 
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+  tournamentId String
 }

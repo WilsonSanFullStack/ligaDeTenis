@@ -1,34 +1,21 @@
 import { auth, currentUser } from "@clerk/nextjs";
 
 async function loadPOsts() {
-  const res = await fetch("http://localhost:3000/api/user"
-    
-  );
+  const { userIds } = auth();
+  if (userIds) {
+
+  }
+  const user = await currentUser();
+  const res = await fetch(`http://localhost:3000/api/user/${user.id}`);
   const userId = await res.json();
+  userId.imageUrl = user?.imageUrl;
   return userId;
 }
 
 async function Profile() {
-  // Get the userId from auth() -- if null, the user is not logged in
-  const { userIds } = auth();
-  if (userIds) {
-    // Query DB for user specific information or display assets only to logged in users
-  }
-  // Get the User object when you need access to the user's information
-  const user = await currentUser();
   // Use `user` to render user details or create UI elements
   const userId = await loadPOsts();
-
-  // const options = {
-  //   weekday: "long",
-  //   year: "numeric",
-  //   month: "long",
-  //   day: "numeric",
-  // };
-  // const formattedDate = new Date(userId.createdAt).toLocaleDateString(
-  //   "es-ES",
-  //   options
-  // );
+  console.log(userId);
   return (
     <div className="Container">
       {userId && (
@@ -38,7 +25,7 @@ async function Profile() {
         >
           <section className="flex justify-center items-center p-2">
             <img
-              src={user.imageUrl}
+              src={userId.imageUrl}
               alt={userId.firstName}
               width={800}
               className="w-36 rounded-full"
@@ -61,17 +48,17 @@ async function Profile() {
           <section className="text-center font-bold">
             <h1>{userId.admin ? "You are admin" : "You are not admin"}</h1>
           </section>
-          {/*
-          <section className="grid grid-cols-2">
-            <h1 className="text-right mx-2">Register Date:</h1>
-            <h2 className=" text-left">{formattedDate}</h2>
-            </section>
-      */}
-
         </section>
       )}
+      {userId.players && userId.players.map((x) => {
+        return (
+          <div key={x.id}>
+            <h1>{x.name}</h1>
+          </div>
+        )
+      })}
     </div>
   );
 }
 
-export default Profile;
+export default Profile
