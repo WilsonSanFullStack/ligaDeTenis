@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.Container {
+  @apply container mx-auto min-h-screen bg-background pt-12
+}
+.title {
+  @apply text-3xl font-bold text-center pt-4
+}
+.input {
+  @apply bg-slate-500  rounded-lg text-center;
+}
+.label {
+  @apply font-bold text-lg p-1
+}
+.sectionForm {
+  @apply grid w-96 m-2
+}
+.section {
+  @apply max-w-xl border-2 border-slate-300 mx-auto mt-8 text-center flex flex-col justify-center items-center rounded-lg
+}
+.error {
+  @apply text-red-500 font-bold text-lg
+}
+.btn {
+  @apply text-5xl border-slate-950 rounded-xl  active:bg-primary active:border-2 hover:bg-green-400 border-2 
+}
+.navBar {
+  @apply   px-10 bg-slate-500 fixed top-0 min-w-full;
+}
+.navBar ul {
+  @apply flex list-none justify-between items-center h-9;
+}
+.navBar li {
+  @apply  inline-block items-center;
+}
+.btnNavBar {
+  @apply border-2  active:border-2 hover:bg-green-400 active:bg-primary  hover:border-2 border-slate-950 rounded-lg px-1
+}
+
+
+
+
+.loader {
+  width: 384px;
+  box-sizing: content-box;
+  height: 192px;
+  background: #43bdea;
+  border-color: #2035bc;
+  border-style: solid;
+  border-width: 8px 8px 200px 8px;
+  border-radius: 100%;
+  position: relative;
+  animation: 3s yinYang linear infinite;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: #43bdea;
+  border: 72px solid #2035bc;
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+  box-sizing: content-box;
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #2035bc;
+  border: 72px solid #43bdea;
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+  box-sizing: content-box;
+}
+@keyframes yinYang {
+  100%{transform: rotate(360deg)}
+}
