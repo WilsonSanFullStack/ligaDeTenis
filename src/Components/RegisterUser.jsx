@@ -90,7 +90,7 @@ export default function RegisterUser({ userClar }) {
     e.preventDefault();
     const checking = validateFormData(register);
     if (Object.keys(checking).length === 0) {
-      const res = await fetch("https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user", {
+      const res = await fetch("https://liga-de-tenis-ryuksan.vercel.app/api/user", {
         method: "POST",
         body: JSON.stringify(register),
         headers: { "Content-Type": "application/json" },

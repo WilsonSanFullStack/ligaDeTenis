@@ -7,7 +7,7 @@ async function loadPOsts() {
 
   }
   const user = await currentUser();
-  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${user.id}`);
+  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${user.id}`);
   const userId = await res.json();
   userId.imageUrl = user?.imageUrl;
   return userId;

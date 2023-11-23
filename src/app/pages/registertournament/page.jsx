@@ -59,7 +59,7 @@ export default function RegisterTournament() {
     e.preventDefault();
     const checking = validateFormData(tournament);
     if (Object.keys(checking).length === 0) {
-      const res = await fetch("https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament", {
+      const res = await fetch("https://liga-de-tenis-ryuksan.vercel.app/api/tournament", {
         method: "POST",
         body: JSON.stringify(tournament),
         headers: { "Content-Type": "application/json" },

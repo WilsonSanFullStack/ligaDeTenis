@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 async function EnterTourney(requestBody) {
-  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/relation`, {
+  const res = await fetch(`liga-de-tenis-ryuksan.vercel.app/api/relation`, {
     method: "PUT",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
@@ -12,7 +12,7 @@ async function EnterTourney(requestBody) {
   return data;
 }
 async function ExitTourney(requestBody) {
-  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/relation`, {
+  const res = await fetch(`liga-de-tenis-ryuksan.vercel.app/api/relation`, {
     method: "DELETE",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
@@ -22,7 +22,7 @@ async function ExitTourney(requestBody) {
 }
 async function updateTournament(tournamentId, tournamentData) {
   const res = await fetch(
-    `https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament/${tournamentId}`,
+    `https://liga-de-tenis-ryuksan.vercel.app/api/tournament/${tournamentId}`,
     {
       method: "PUT",
       body: JSON.stringify(tournamentData),
@@ -88,7 +88,7 @@ export function Tourney({ tournament, user, useres }) {
 
       // Llama a la función asincrónica aquí
       const res = await fetch(
-        `https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament/${tournamentId}`,
+        `liga-de-tenis-ryuksan.vercel.app/api/tournament/${tournamentId}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },

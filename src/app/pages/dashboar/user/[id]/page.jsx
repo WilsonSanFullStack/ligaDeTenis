@@ -4,19 +4,19 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 async function getUserId(id) {
-  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${id}`);
+  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${id}`);
   const data = await res.json();
   return data;
 }
 async function deleteUser(id) {
-  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${id}`, {
+  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${id}`, {
     method: "DELETE",
   });
   const data = await res.json();
   return data;
 }
 async function editUser(id, userData) {
-  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${id}`, {
+  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${id}`, {
     method: "PUT",
     body: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" },

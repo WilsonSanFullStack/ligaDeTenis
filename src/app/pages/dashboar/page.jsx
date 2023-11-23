@@ -2,12 +2,12 @@ import TableTourney from "@/Components/TableTourney";
 import TableUsers from "@/Components/TableUsers";
 
 async function getTournament() {
-  const res = await fetch("https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament");
+  const res = await fetch("https://liga-de-tenis-ryuksan.vercel.app/api/tournament");
   const data = await res.json();
   return data;
 }
 async function getUsers() {
-  const res = await fetch("https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user");
+  const res = await fetch("https://liga-de-tenis-ryuksan.vercel.app/api/user");
   const data = await res.json();
   return data;
 }
