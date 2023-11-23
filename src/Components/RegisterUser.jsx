@@ -13,7 +13,7 @@ function validateFormData(register) {
   if (register.phone.length < 10 || register.phone.length === 0) {
     error.phone = "Country Code and Phone number is required";
   }
-  if (register.gender < 3 || register.gender === 0) {
+  if (register.gender.length < 3 || register.gender === 0) {
     error.gender = "Gender is required";
   }
 
@@ -72,7 +72,6 @@ export default function RegisterUser({ userClar }) {
       })
     );
   };
-  console.log(register);
   const handlePhone = (e) => {
     setRegister({
       ...register,
@@ -96,21 +95,26 @@ export default function RegisterUser({ userClar }) {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      router.push('/loader')
-      setRegister({
-        idClerk: "",
-        image: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        gender: "",
-        category: "",
-        phone: "",
-        admin: false,
-      });
-      setShowForm(false);
-      setConfirmation(data)
-    } else {
+      try {
+       if (data.id) {
+          await router.push('/loader');
+          setRegister({
+            idClerk: "",
+            image: "",
+            email: "",
+            firstName: "",
+            lastName: "",
+            gender: "",
+            phone: "",
+            admin: false,
+          });
+          setShowForm(false);
+          setConfirmation(data)
+        }
+      } catch (error) {
+        
+      }
+      } else {
       setShowForm(true);
     }
     setBug(checking);
@@ -180,6 +184,7 @@ export default function RegisterUser({ userClar }) {
                 onChange={handleGender}
                 className="input"
               />
+              {bug && <h1 className="error">{bug.gender}</h1>}
             </section>
 
             <section className="sectionForm">

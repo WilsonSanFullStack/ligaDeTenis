@@ -15,7 +15,6 @@ async function loadPOsts() {
 async function Profile() {
   // Use `user` to render user details or create UI elements
   const userId = await loadPOsts();
-  console.log(userId);
   return (
     <div className="Container">
       {userId && (

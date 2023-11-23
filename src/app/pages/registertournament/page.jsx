@@ -65,7 +65,6 @@ export default function registerTournament() {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      console.log(data)
       if (checking) {
         setConfirmation(
           "Your tournament is being processed please wait a moment."

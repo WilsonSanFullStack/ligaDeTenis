@@ -25,9 +25,6 @@ async function Tournament({ params }) {
   const tournament = await getTournamentId(params.id);
   const user = await loadPOsts();
   const useres = await getAllUser()
-  // console.log(tournament)
-  // console.log(user)
-  // console.log(tournament)
-  return <Tourney tournament={tournament} user={user} useres={useres} key={tournament.id} />;
+  return <Tourney tournament={tournament} user={user} useres={useres} />;
 }
 export default Tournament;

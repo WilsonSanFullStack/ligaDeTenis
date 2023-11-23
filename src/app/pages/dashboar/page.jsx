@@ -15,7 +15,6 @@ async function getUsers() {
 export default async function Dashboar() {
   const tournaments = await getTournament();
   const users = await getUsers();
-  console.log(users);
   return (
     <div className="Container grid grid-cols-2">
       <div className="m-2">

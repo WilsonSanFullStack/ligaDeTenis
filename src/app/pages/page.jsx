@@ -2,13 +2,11 @@ import Link from "next/link";
 async function getTournament() {
   const res = await fetch('http://localhost:3000/api/tournament');
   const data = await res.json();
-  console.log(data)
   return data;
 }
 
 export default async function Pages() {
   const tournament = await getTournament();
-  console.log(tournament)
   return (
     <div className="Container">
       <h1 className="title">Tournament List</h1>
@@ -16,7 +14,7 @@ export default async function Pages() {
         {tournament &&
           tournament.map((item) => {
             return (
-              <Link href={`/pages/tournament/${item.id}`}>
+              <Link href={`/pages/tournament/${item.id}`} key={item.id}>
                 <div
                   key={item.id}
                   className="border-2 border-slate-600 p-2 text-center rounded-xl"

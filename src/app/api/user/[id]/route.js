@@ -3,8 +3,6 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params }) {
   try {
-    console.log('params.id')
-    console.log(params.id)
     const user = await prisma.user.findFirst({
       where: { clerk: params.id },
       include: { players: true },
@@ -17,8 +15,14 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const data = await request.json();
+console.log(data)
+    // Validar que se proporcionaron datos importantes
+    if (!data || !data.firstName) {
+      return NextResponse.json({ error: "Datos incompletos para la actualización." });
+    }
+
     const userUpdate = await prisma.user.update({
-      where: { idClerk: params.id },
+      where: { id: params.id },
       data: {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -26,22 +30,26 @@ export async function PUT(request, { params }) {
         email: data.email,
         phone: data.phone,
         gender: data.gender,
-        admin: data.admin,
+        admin: JSON.parse(data.admin),
       },
     });
+
     return NextResponse.json(userUpdate);
   } catch (error) {
-    return NextResponse.json("No fue posible" + error.message);
+    console.log(error)
+    return NextResponse.json({ error: "Error al actualizar el usuario", details: error.message });
   }
 }
+
 
 export async function DELETE(request, { params }) {
   try {
     const userDelete = await prisma.user.delete({
-      where: { idClerk: params.id },
+      where: { id: params.id },
     });
-    return NextResponse.json("eliminando Usuario" + params.id);
+    return NextResponse.json("eliminando Usuario" + userDelete.firstName);
   } catch (error) {
-    return NextResponse.json("No fue posible" + error.message);
+    return NextResponse.json({ error: `No fue posible eliminar el usuario: ${error.message}` });
+
   }
 }

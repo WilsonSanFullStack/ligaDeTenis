@@ -1,8 +1,10 @@
 'use client'
-
-export default function TableTourney({ tournaments, users }) {
-  console.log(tournaments);
-  
+import { useRouter } from "next/navigation";
+export default function TableTourney({ tournaments }) {
+  const router = useRouter();
+  const handleRowClick = (id) => {
+    router.push(`/pages/tournament/${id}`);
+  };
 
   return (
     <div>
@@ -18,7 +20,11 @@ export default function TableTourney({ tournaments, users }) {
           </thead>
           <tbody>
             {tournaments.map((tournament, index) => (
-              <tr key={tournament.id} className={index % 2 === 0 ? 'bg-slate-500' : 'bg-slate-400'}>
+              <tr key={tournament.id} 
+              className={index % 2 === 0 ? 'bg-slate-500' : 'bg-slate-400'}
+              onClick={() => handleRowClick(tournament.id)}
+                style={{ cursor: "pointer" }}
+              >
                 <td className="py-2 px-4">{index + 1}</td>
                 <td className="py-2 px-4">{tournament.name}</td>
                 <td className="py-2 px-4">{tournament.description}</td>

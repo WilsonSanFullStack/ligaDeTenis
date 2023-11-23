@@ -9,7 +9,6 @@ export async function GET() {
 export async function POST(request) {
   try {
     const data = await request.json();
-    console.log(data)
     const newTournament = await prisma.tournament.create({
       data: {
         name: data.name,

@@ -16,7 +16,6 @@ async function loadUser() {
 
 export default async function PagesLayuot({ children }) {
   const userId = await loadUser();
-  console.log(userId);
   return (
     <div>
       <nav className="navBar">
