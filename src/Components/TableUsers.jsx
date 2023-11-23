@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 export default function UserTable({ users }) {
 
@@ -42,9 +43,10 @@ export default function UserTable({ users }) {
                 <td className="py-2 px-4">{user.admin.toString()}</td>
                 <td className="py-2 px-4">{user.email}</td>
                 <td className="py-2 px-4">
-                  <img
+                  <Image
                     src={user.image}
                     alt={`${user.firstName} ${user.lastName}`}
+                    width={800}
                     className="w-10 h-10 rounded"
                   />
                 </td>

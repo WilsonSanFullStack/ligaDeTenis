@@ -1,13 +1,19 @@
 import { authMiddleware } from "@clerk/nextjs";
- 
+
 // This example protects all routes including api/trpc routes
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
-  publicRoutes: ['/', "/api/user/:id", "/api/user", "/api/tournament", "/api/tournament/:id", "/api/tournament/:id/:id"],
+  publicRoutes: [
+    "https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/",
+    "https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/:id",
+    "https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user",
+    "https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament",
+    "https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament/:id",
+    "https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament/:id/:id",
+  ],
 });
- 
+
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
- 

@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 export default function TableTourney({ tournaments }) {
   const router = useRouter();
@@ -29,9 +30,10 @@ export default function TableTourney({ tournaments }) {
                 <td className="py-2 px-4">{tournament.name}</td>
                 <td className="py-2 px-4">{tournament.description}</td>
                 <td className="py-2 px-4 border-b border-slate-700">
-                  <img
+                  <Image
                     src={tournament.image}
                     alt={tournament.name}
+                    width={800}
                     className="w-10 h-10 rounded"
                   />
                 </td>

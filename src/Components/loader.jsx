@@ -28,7 +28,7 @@ export default function Login({ data }) {
     };
 
     checkLogin();
-  }, [isSignedIn, router]);
+  }, [isSignedIn, router, data]);
 
   return (
     <div className="Container flex justify-center items-center">

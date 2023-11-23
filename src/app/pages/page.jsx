@@ -1,6 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
+
+
 async function getTournament() {
-  const res = await fetch('http://localhost:3000/api/tournament');
+  const res = await fetch('https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament');
   const data = await res.json();
   return data;
 }
@@ -20,9 +23,10 @@ export default async function Pages() {
                   className="border-2 border-slate-600 p-2 text-center rounded-xl"
                 >
                   <h1 className="text-xl font-bold p-1">{item.name}</h1>
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
+                    width={800}
                     className="rounded-xl"
                   />
                   <p className="text-justify">{item.description}</p>

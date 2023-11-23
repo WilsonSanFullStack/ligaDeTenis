@@ -1,4 +1,5 @@
 import { auth, currentUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 async function loadPOsts() {
   const { userIds } = auth();
@@ -6,7 +7,7 @@ async function loadPOsts() {
 
   }
   const user = await currentUser();
-  const res = await fetch(`http://localhost:3000/api/user/${user.id}`);
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${user.id}`);
   const userId = await res.json();
   userId.imageUrl = user?.imageUrl;
   return userId;
@@ -23,7 +24,7 @@ async function Profile() {
           className="m-2 grid w-fit border-2 border-slate-950 dark:border-slate-300 p-2"
         >
           <section className="flex justify-center items-center p-2">
-            <img
+            <Image
               src={userId.imageUrl}
               alt={userId.firstName}
               width={800}

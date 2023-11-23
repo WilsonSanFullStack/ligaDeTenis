@@ -1,22 +1,22 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { auth, currentUser } from "@clerk/nextjs";
 
 async function getUserId(id) {
-  const res = await fetch(`http://localhost:3000/api/user/${id}`);
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${id}`);
   const data = await res.json();
   return data;
 }
 async function deleteUser(id) {
-  const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${id}`, {
     method: "DELETE",
   });
   const data = await res.json();
   return data;
 }
 async function editUser(id, userData) {
-  const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${id}`, {
     method: "PUT",
     body: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" },
@@ -25,8 +25,9 @@ async function editUser(id, userData) {
   return data;
 }
 
-export default function user({ params }) {
+export default function User({ params }) {
   const router = useRouter();
+
   const [userId, setUserId] = useState(null);
   const [editedUser, setEditedUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -40,7 +41,7 @@ export default function user({ params }) {
     };
 
     fetchUserData();
-  }, []);
+  },[setUserId, params.id]);
 
   const handleDeleteUser = async () => {
     try {
@@ -57,8 +58,6 @@ export default function user({ params }) {
       setIsEditing(true);
       setEditedUser({ ...userId });
     } catch (error) {
-      // Manejar errores
-      console.error("Error editing user", error);
     }
   };
 
@@ -73,7 +72,6 @@ export default function user({ params }) {
       const result = await editUser(userId.id, editedUser);
       setIsEditing(false);
     } catch (error) {
-      console.error("Error saving user changes", error);
     }
   };
   
@@ -91,7 +89,7 @@ export default function user({ params }) {
           className="m-2 grid w-fit border-2 border-slate-950 dark:border-slate-300 p-2"
         >
           <section className="flex justify-center items-center p-2">
-            <img
+            <Image
               src={userId.imageUrl}
               alt={userId.firstName}
               width={800}

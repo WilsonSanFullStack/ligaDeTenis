@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 async function EnterTourney(requestBody) {
-  const res = await fetch(`http://localhost:3000/api/relation`, {
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/relation`, {
     method: "PUT",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
@@ -11,7 +12,7 @@ async function EnterTourney(requestBody) {
   return data;
 }
 async function ExitTourney(requestBody) {
-  const res = await fetch(`http://localhost:3000/api/relation`, {
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/relation`, {
     method: "DELETE",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
@@ -21,7 +22,7 @@ async function ExitTourney(requestBody) {
 }
 async function updateTournament(tournamentId, tournamentData) {
   const res = await fetch(
-    `http://localhost:3000/api/tournament/${tournamentId}`,
+    `https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament/${tournamentId}`,
     {
       method: "PUT",
       body: JSON.stringify(tournamentData),
@@ -87,7 +88,7 @@ export function Tourney({ tournament, user, useres }) {
 
       // Llama a la función asincrónica aquí
       const res = await fetch(
-        `http://localhost:3000/api/tournament/${tournamentId}`,
+        `https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/tournament/${tournamentId}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -116,9 +117,10 @@ export function Tourney({ tournament, user, useres }) {
           className="border-2 border-slate-600 p-2 text-center rounded-xl flex justify-center items-center flex-col w-fit"
         >
           <h1 className="text-xl font-bold p-1">{tournament.name}</h1>
-          <img
+          <Image
             src={tournament.image}
             alt={tournament.name}
+            width={800}
             className="rounded-xl"
           />
           <p className="text-justify">{tournament.description}</p>
@@ -188,9 +190,10 @@ export function Tourney({ tournament, user, useres }) {
                 key={x + 1}
                 className="flex flex-col p-1 border-2 border-slate-700 rounded-xl items-center justify-center"
               >
-                <img
+                <Image
                   src={item.image}
                   alt={item.name}
+                  width={800}
                   className="rounded-full w-32"
                 />
                 <h1 className="font-bold">

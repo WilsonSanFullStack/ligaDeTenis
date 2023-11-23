@@ -1,15 +1,15 @@
-import { UserButton, auth, currentUser } from "@clerk/nextjs";
+import { UserButton,  currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 async function loadUser() {
   // Get the userId from auth() -- if null, the user is not logged in
-  const { userIds } = auth();
-  if (userIds) {
-    // Query DB for user specific information or display assets only to logged in users
-  }
+  // const { userIds } = auth();
+  // if (userIds) {
+  //   // Query DB for user specific information or display assets only to logged in users
+  // }
   // Get the User object when you need access to the user's information
   const user = await currentUser();
-  const res = await fetch(`http://localhost:3000/api/user/${user.id}`);
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${user.id}`);
   const userId = await res.json();
   return userId;
 }

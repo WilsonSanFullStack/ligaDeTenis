@@ -1,14 +1,11 @@
-import {auth, currentUser} from '@clerk/nextjs'
-import Login from '@/Components/loader';
-const { userId } = auth();
-if (userId) {
+import {currentUser} from '@clerk/nextjs'
+import Login from '@/Components/Loader';
 
-}
 
 async function getUser () {
   const user = await currentUser(); 
 
-  const res = await fetch(`http://localhost:3000/api/user/${user.id}`);
+  const res = await fetch(`https://liga-de-tenis-6pw6n1ymu-ryuksan.vercel.app/api/user/${user.id}`);
   const data = await res.json()
 
   return data
