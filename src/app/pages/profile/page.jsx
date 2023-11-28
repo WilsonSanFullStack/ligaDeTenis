@@ -56,13 +56,6 @@ async function Profile() {
           </section>
         </section>
       )}
-      {userId.players && userId.players.map((x) => {
-        return (
-          <div key={x.id}>
-            <h1>{x.name}</h1>
-          </div>
-        )
-      })}
     </div>
   );
 }

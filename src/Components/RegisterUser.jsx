@@ -98,7 +98,7 @@ export default function RegisterUser({ userClar }) {
       const data = await res.json();
       try {
        if (data.id) {
-          await router.push('/loader');
+          setTimeout(() => {router.push('/loader');}, 5000) 
           setRegister({
             idClerk: "",
             image: "",

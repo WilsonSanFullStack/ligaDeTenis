@@ -3,9 +3,9 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params }) {
   try {
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findFirstOrThrow({
       where: { clerk: params.id },
-      include: { players: true },
+      // include: { players: true },
     });
     return NextResponse.json(user);
   } catch (error) {
@@ -15,7 +15,6 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const data = await request.json();
-console.log(data)
     // Validar que se proporcionaron datos importantes
     if (!data || !data.firstName) {
       return NextResponse.json({ error: "Datos incompletos para la actualización." });
@@ -36,7 +35,6 @@ console.log(data)
 
     return NextResponse.json(userUpdate);
   } catch (error) {
-    console.log(error)
     return NextResponse.json({ error: "Error al actualizar el usuario", details: error.message });
   }
 }

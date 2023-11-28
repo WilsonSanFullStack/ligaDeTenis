@@ -8,7 +8,7 @@ async function EnterTourney(requestBody) {
     method: "PUT",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
-  });
+  }, {cache: 'no-store'});
   const data = await res.json();
   return data;
   } catch (error) {
@@ -22,7 +22,7 @@ async function ExitTourney(requestBody) {
     method: "DELETE",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
-  });
+  }, {cache: 'no-store'});
   const data = await res.json();
   return data;
   } catch (error) {
@@ -30,6 +30,7 @@ async function ExitTourney(requestBody) {
   }
   
 }
+
 async function updateTournament(tournamentId, tournamentData) {
   try {
     const res = await fetch(
@@ -38,7 +39,7 @@ async function updateTournament(tournamentId, tournamentData) {
       method: "PUT",
       body: JSON.stringify(tournamentData),
       headers: { "Content-Type": "application/json" },
-    }
+    }, {cache: 'no-store'}
   );
   const data = await res.json();
   return data;
@@ -135,8 +136,8 @@ export function Tourney({ tournament, user, useres }) {
           <Image
             src={tournament.image}
             alt={tournament.name}
-            width={800}
-            height={800}
+            width={500}
+            height={300}
             className="rounded-xl"
           />
           <p className="text-justify">{tournament.description}</p>

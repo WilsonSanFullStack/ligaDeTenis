@@ -18,7 +18,6 @@ export async function PUT(request) {
       where: { id: tournamentId },
     });
     if (existingUser && existingTournament) {
-      console.log("entro en el if");
       const updateTournament = await prisma.tournament.update({
         where: { id: tournamentId },
         data: {
@@ -45,8 +44,6 @@ export async function PUT(request) {
 export async function DELETE(request) {
   try {
     const data = await request.json();
-    console.log('first')
-    console.log(data)
     const userId = data.userId;
     const tournamentId = data.tournamentId;
     const playerId = data.playerId;
@@ -81,7 +78,7 @@ export async function DELETE(request) {
       return NextResponse.json({ message: "No se encontró el usuario o el torneo." });
     }
   } catch (error) {
-    console.log(error);
+  
     return NextResponse.json({ message: "No se pudo: " + error.message });
   }
 }

@@ -35,20 +35,20 @@ export default function UserTable({ users }) {
                 style={{ cursor: "pointer" }}
                 key={user.id}
               >
-                <td className="py-2 px-4">{index + 1}</td>
-                <td className="py-2 px-4">{user.firstName}</td>
-                <td className="py-2 px-4">{user.lastName}</td>
-                <td className="py-2 px-4">{user.gender}</td>
-                <td className="py-2 px-4">{user.phone}</td>
-                <td className="py-2 px-4">{user.admin.toString()}</td>
-                <td className="py-2 px-4">{user.email}</td>
-                <td className="py-2 px-4">
+                <td className="py-8 px-4">{index + 1}</td>
+                <td className="py-8 px-4">{user.firstName}</td>
+                <td className="py-8 px-4">{user.lastName}</td>
+                <td className="py-8 px-4">{user.gender}</td>
+                <td className="py-8 px-4">{user.phone}</td>
+                <td className="py-8 px-4">{user.admin.toString()}</td>
+                <td className="py-8 px-4">{user.email}</td>
+                <td className="py-8 px-4">
                   <Image
                     src={user.image}
                     alt={`${user.firstName} ${user.lastName}`}
-                    width={800}
-                    height={800}
-                    className="w-10 h-10 rounded"
+                    width={50}
+                    height={20}
+                    className="w-8 h-14 rounded-full m-2"
                   />
                 </td>
               </tr>

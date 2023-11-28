@@ -1,5 +1,6 @@
 import { Tourney } from "@/Components/Tourney";
 import { auth, currentUser } from "@clerk/nextjs";
+
 async function loadPOsts() {
   try {
     const { userIds } = auth();
@@ -27,7 +28,7 @@ async function getAllUser() {
 }
 async function getTournamentId(id) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament/${id}`, {cache: 'no-store'});
   const data = await res.json();
   return data;
   } catch (error) {

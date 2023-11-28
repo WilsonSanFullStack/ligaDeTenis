@@ -3,6 +3,7 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET() {
   const useres = await prisma.user.findMany();
+
   return NextResponse.json(useres);
 }
 

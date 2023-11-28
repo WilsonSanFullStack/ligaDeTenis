@@ -1,28 +1,29 @@
-import {currentUser} from '@clerk/nextjs'
-import Login from '@/Components/loader';
+import { currentUser } from "@clerk/nextjs";
+import Login from "@/Components/loader";
 
-
-async function getUser () {
+async function getUser() {
+  const user = await currentUser();
   try {
-    const user = await currentUser(); 
-  
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}`);
-    console.log(res)
-    const data = await res.json()
-    console.log('first')
-  
-    return data
-    
+    if (user.id) {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}`, {cache: 'no-store'}
+      );
+      
+      const data = await res.json();
+     
+      return data;
+    }
+
   } catch (error) {
-    console.log(error)
   }
 }
+
 async function Loader() {
- const data = await getUser()
+  const data = await getUser();
 
   return (
     <div className="Container flex justify-center items-center">
-      <Login data={data}/>
+      <Login data={data} />
     </div>
   );
 }
