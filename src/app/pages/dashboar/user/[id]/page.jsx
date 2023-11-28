@@ -1,6 +1,6 @@
 "use client";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 async function getUserId(id) {
@@ -27,7 +27,6 @@ async function editUser(id, userData) {
 
 export default function User({ params }) {
   const router = useRouter();
-
   const [userId, setUserId] = useState(null);
   const [editedUser, setEditedUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -41,7 +40,7 @@ export default function User({ params }) {
     };
 
     fetchUserData();
-  },[setUserId, params.id]);
+  }, [setUserId, params.id]);
 
   const handleDeleteUser = async () => {
     try {
