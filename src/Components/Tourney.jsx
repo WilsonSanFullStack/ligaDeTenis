@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 async function EnterTourney(requestBody) {
-  const res = await fetch(`liga-de-tenis-ryuksan.vercel.app/api/relation`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/relation`, {
     method: "PUT",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
@@ -12,7 +12,7 @@ async function EnterTourney(requestBody) {
   return data;
 }
 async function ExitTourney(requestBody) {
-  const res = await fetch(`liga-de-tenis-ryuksan.vercel.app/api/relation`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/relation`, {
     method: "DELETE",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
@@ -22,7 +22,7 @@ async function ExitTourney(requestBody) {
 }
 async function updateTournament(tournamentId, tournamentData) {
   const res = await fetch(
-    `https://liga-de-tenis-ryuksan.vercel.app/api/tournament/${tournamentId}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/tournament/${tournamentId}`,
     {
       method: "PUT",
       body: JSON.stringify(tournamentData),
@@ -88,7 +88,7 @@ export function Tourney({ tournament, user, useres }) {
 
       // Llama a la función asincrónica aquí
       const res = await fetch(
-        `liga-de-tenis-ryuksan.vercel.app/api/tournament/${tournamentId}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/tournament/${tournamentId}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -121,6 +121,7 @@ export function Tourney({ tournament, user, useres }) {
             src={tournament.image}
             alt={tournament.name}
             width={800}
+            height={800}
             className="rounded-xl"
           />
           <p className="text-justify">{tournament.description}</p>
@@ -194,6 +195,7 @@ export function Tourney({ tournament, user, useres }) {
                   src={item.image}
                   alt={item.name}
                   width={800}
+                  height={800}
                   className="rounded-full w-32"
                 />
                 <h1 className="font-bold">

@@ -9,7 +9,7 @@ async function loadUser() {
   // }
   // Get the User object when you need access to the user's information
   const user = await currentUser();
-  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${user.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}`);
   const userId = await res.json();
   return userId;
 }

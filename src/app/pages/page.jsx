@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 async function getTournament() {
-  const res = await fetch('https://liga-de-tenis-ryuksan.vercel.app/api/tournament');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament`);
   const data = await res.json();
   return data;
 }
@@ -27,6 +27,7 @@ export default async function Pages() {
                     src={item.image}
                     alt={item.name}
                     width={800}
+                    height={800}
                     className="rounded-xl"
                   />
                   <p className="text-justify">{item.description}</p>

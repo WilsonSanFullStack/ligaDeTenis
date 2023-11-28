@@ -34,6 +34,7 @@ export default function TableTourney({ tournaments }) {
                     src={tournament.image}
                     alt={tournament.name}
                     width={800}
+                    height={800}
                     className="w-10 h-10 rounded"
                   />
                 </td>

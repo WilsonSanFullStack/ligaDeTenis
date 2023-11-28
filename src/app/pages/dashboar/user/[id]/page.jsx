@@ -4,19 +4,19 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 async function getUserId(id) {
-  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${id}`);
   const data = await res.json();
   return data;
 }
 async function deleteUser(id) {
-  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${id}`, {
     method: "DELETE",
   });
   const data = await res.json();
   return data;
 }
 async function editUser(id, userData) {
-  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${id}`, {
     method: "PUT",
     body: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" },
@@ -93,6 +93,7 @@ export default function User({ params }) {
               src={userId.imageUrl}
               alt={userId.firstName}
               width={800}
+              height={800}
               className="w-36 rounded-full"
             />
           </section>

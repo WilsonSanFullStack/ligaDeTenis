@@ -47,6 +47,7 @@ export default function UserTable({ users }) {
                     src={user.image}
                     alt={`${user.firstName} ${user.lastName}`}
                     width={800}
+                    height={800}
                     className="w-10 h-10 rounded"
                   />
                 </td>

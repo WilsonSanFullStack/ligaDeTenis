@@ -90,7 +90,7 @@ export default function RegisterUser({ userClar }) {
     e.preventDefault();
     const checking = validateFormData(register);
     if (Object.keys(checking).length === 0) {
-      const res = await fetch("https://liga-de-tenis-ryuksan.vercel.app/api/user", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         method: "POST",
         body: JSON.stringify(register),
         headers: { "Content-Type": "application/json" },
@@ -143,6 +143,7 @@ export default function RegisterUser({ userClar }) {
                 src={register.image}
                 alt="image of google"
                 width={800}
+                height={800}
                 className="w-36 rounded-full"
               />
             </section>

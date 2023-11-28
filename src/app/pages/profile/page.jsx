@@ -7,7 +7,7 @@ async function loadPOsts() {
 
   }
   const user = await currentUser();
-  const res = await fetch(`https://liga-de-tenis-ryuksan.vercel.app/api/user/${user.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}`);
   const userId = await res.json();
   userId.imageUrl = user?.imageUrl;
   return userId;
@@ -28,6 +28,7 @@ async function Profile() {
               src={userId.imageUrl}
               alt={userId.firstName}
               width={800}
+              height={800}
               className="w-36 rounded-full"
             />
           </section>

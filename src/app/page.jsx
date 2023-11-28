@@ -7,7 +7,7 @@ export default function Home() {
     <div className="Container flex items-center justify-center">
       <Link href="/sign-in">
         <div className="bg-dark  max-w-fit p-8 rounded-3xl animate-pulse">
-          <Image src="/logo.png" alt="logo" width={800}/>
+          <Image src="/logo.png" alt="logo" width={800} height={800}/>
         </div>
       </Link>
     </div>

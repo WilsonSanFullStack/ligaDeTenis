@@ -5,12 +5,12 @@ import { authMiddleware } from "@clerk/nextjs";
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
   publicRoutes: [
-    "https://liga-de-tenis-ryuksan.vercel.app/",
-    "https://liga-de-tenis-ryuksan.vercel.app/api/user/:id",
-    "https://liga-de-tenis-ryuksan.vercel.app/api/user",
-    "https://liga-de-tenis-ryuksan.vercel.app/api/tournament",
-    "https://liga-de-tenis-ryuksan.vercel.app/api/tournament/:id",
-    "https://liga-de-tenis-ryuksan.vercel.app/api/tournament/:id/:id",
+    '/',
+    `/api/user`,
+    `/api/user/:id`,
+    `/api/tournament`,
+    `/api/tournament/:id`,
+    `/api/tournament/:id/:id`,
   ],
 });
 
