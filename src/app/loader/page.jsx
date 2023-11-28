@@ -20,7 +20,7 @@ async function getUser() {
 
 async function Loader() {
   const data = await getUser();
-
+  
   return (
     <div className="Container flex justify-center items-center">
       <Login data={data} />

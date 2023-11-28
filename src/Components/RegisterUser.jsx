@@ -90,13 +90,14 @@ export default function RegisterUser({ userClar }) {
     e.preventDefault();
     const checking = validateFormData(register);
     if (Object.keys(checking).length === 0) {
+     try { 
       const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         method: "POST",
         body: JSON.stringify(register),
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      try {
+      
        if (data.id) {
           setTimeout(() => {router.push('/loader');}, 5000) 
           setRegister({

@@ -7,10 +7,11 @@ export default function Login({ data }) {
   const { isSignedIn } = useUser();
   const router = useRouter();
   useEffect(() => {
+    setTimeout(() => {if (data) data}, 5000)
     const checkLogin = async () => {
       if (data) {
 
-        if (data?.clerk) {
+        if (data?.id) {
 
           if (data.admin) {
             router.replace("/pages/dashboar");
@@ -28,7 +29,7 @@ export default function Login({ data }) {
     };
 
     checkLogin();
-  }, [isSignedIn, router, data, data.clerk]);
+  }, [data, isSignedIn, router,  data.clerk]);
 
   return (
     <div className="Container flex justify-center items-center">
