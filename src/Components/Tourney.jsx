@@ -3,25 +3,36 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 async function EnterTourney(requestBody) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/relation`, {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/relation`, {
     method: "PUT",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
   });
   const data = await res.json();
   return data;
+  } catch (error) {
+    
+  }
+  
 }
 async function ExitTourney(requestBody) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/relation`, {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/relation`, {
     method: "DELETE",
     body: JSON.stringify(requestBody),
     headers: { "Content-Type": "application/json" },
   });
   const data = await res.json();
   return data;
+  } catch (error) {
+    
+  }
+  
 }
 async function updateTournament(tournamentId, tournamentData) {
-  const res = await fetch(
+  try {
+    const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/tournament/${tournamentId}`,
     {
       method: "PUT",
@@ -31,6 +42,10 @@ async function updateTournament(tournamentId, tournamentData) {
   );
   const data = await res.json();
   return data;
+  } catch (error) {
+    
+  }
+  
 }
 
 export function Tourney({ tournament, user, useres }) {

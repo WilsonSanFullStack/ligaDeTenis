@@ -1,7 +1,8 @@
 import { Tourney } from "@/Components/Tourney";
 import { auth, currentUser } from "@clerk/nextjs";
 async function loadPOsts() {
-  const { userIds } = auth();
+  try {
+    const { userIds } = auth();
   if (userIds) {
   }
     const user = await currentUser();
@@ -9,16 +10,30 @@ async function loadPOsts() {
     const userId = await res.json();
     userId.imageUrl = user.imageUrl;
     return userId;
+  } catch (error) {
+    
+  }
+  
 }
 async function getAllUser() {
+  try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user`);
     const useres = await res.json();
     return useres;
+  } catch (error) {
+    
+  }
+    
 }
 async function getTournamentId(id) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament/${id}`);
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament/${id}`);
   const data = await res.json();
   return data;
+  } catch (error) {
+    
+  }
+  
 }
 
 async function Tournament({ params }) {

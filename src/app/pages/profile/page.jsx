@@ -2,7 +2,8 @@ import { auth, currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 
 async function loadPOsts() {
-  const { userIds } = auth();
+  try {
+    const { userIds } = auth();
   if (userIds) {
 
   }
@@ -11,6 +12,10 @@ async function loadPOsts() {
   const userId = await res.json();
   userId.imageUrl = user?.imageUrl;
   return userId;
+  } catch (error) {
+    
+  }
+  
 }
 
 async function Profile() {

@@ -2,16 +2,21 @@ import { UserButton,  currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 async function loadUser() {
+  try {
+    const user = await currentUser();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}`);
+  const userId = await res.json();
+  return userId;
+  } catch (error) {
+    
+  }
   // Get the userId from auth() -- if null, the user is not logged in
   // const { userIds } = auth();
   // if (userIds) {
   //   // Query DB for user specific information or display assets only to logged in users
   // }
   // Get the User object when you need access to the user's information
-  const user = await currentUser();
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}`);
-  const userId = await res.json();
-  return userId;
+  
 }
 
 export default async function PagesLayuot({ children }) {

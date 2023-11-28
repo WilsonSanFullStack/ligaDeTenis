@@ -3,4 +3,5 @@ module.exports = {
   images: {
     domains: ['www.lisantenis.com', 'img.clerk.com'],
   },
+  
 };

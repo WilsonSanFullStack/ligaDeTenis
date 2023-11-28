@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
 async function getTournament() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament`);
+    const data = await res.json();
+    return data;
+  } catch (error) {}
 }
 
 export default async function Pages() {

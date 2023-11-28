@@ -2,14 +2,24 @@ import TableTourney from "@/Components/TableTourney";
 import TableUsers from "@/Components/TableUsers";
 
 async function getTournament() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament`);
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tournament`);
   const data = await res.json();
   return data;
+  } catch (error) {
+    
+  }
+  
 }
 async function getUsers() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user`);
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user`);
   const data = await res.json();
   return data;
+  } catch (error) {
+    
+  }
+  
 }
 
 export default async function Dashboar() {
