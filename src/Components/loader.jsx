@@ -11,7 +11,7 @@ export default function Login({ data }) {
     const checkLogin = async () => {
       if (data) {
 
-        if (data?.id) {
+        if (data.id) {
 
           if (data.admin) {
             router.replace("/pages/dashboar");
